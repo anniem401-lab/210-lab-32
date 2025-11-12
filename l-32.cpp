@@ -21,14 +21,15 @@ int main(){
     cout << "\nInitial queue:" << endl;
     for(int i = 0; i < cars.size(); i++){
         cars[i].print(); // Uses print function from Car class
-    }
+    } cout << endl;
 
+    /*
     // Running cycles
     while(cars.size() > 1){
     int i = 1;
     cout << "Time: " << i << " Operation: "; // Car joins or Car pays and leaves
     
     }
-
+    */
     return 0;
 }
