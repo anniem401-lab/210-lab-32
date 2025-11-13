@@ -24,25 +24,30 @@ int main(){
     } cout << endl;
 
     // Running cycles
-    while(cars.size() > 1){
+    while(!cars.empty()){
         int i = 1;
-        cout << "Time: " << i++ << " Operation: ";
+        cout << "Time: " << i << " Operation: ";
             
         int prob = rand() % 100 + 1;
         if (prob <= 55) {// 55% probability that the car at the head of the line pays its toll and leaves the toll booth 
             cout << "Car paid: "; cars.front().print();
             cars.pop_front(); // Removes car at head in the deque
             cout << "\nQueue: " << endl;
-            
+            for(int j = 0; j < cars.size(); j++){
+                cars[j].print();
+            }
         }
-        
+
         prob = rand() % 100 + 1;
         if(prob <= 45) {// 45% probability that another car joins the line for the toll booth
             cars.push_back(Car()); // Adds a car to back of the deque
             cout << "Joined lane: "; cars.back().print();
             cout << "\nQueue: " << endl;
-            
+            for(int j = 0; j < cars.size(); j++){
+                cars[j].print();
+            }
         }
+        i++;
     }
 
     return 0;
