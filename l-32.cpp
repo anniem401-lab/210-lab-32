@@ -1,6 +1,7 @@
 // COMSC-210 | Lab 32 + 33 | Annie Morales
 // IDE used: Visual Studio Code
 
+// Milestones:
 // [Milestone 1] Branched from Lab 32.
 
 // Headers
@@ -10,23 +11,29 @@
 #include <cstdlib>
 #include <iomanip>
 #include <iostream>
+#include <array>
 using namespace std;
 
-// Constant
-const int In_sz = 2; // Initial size of deque
+// Constants
+const int In_sz = 2, Num_Lanes = 4;
+const int P_Car_Pays = 46, P_Car_Joins = 39, P_Rear_Change = 15; // Probabilities
 
 int main(){
     srand(time(0)); // For random number generation
 
-    deque<Car> cars; // deque declared
+    array<deque<Car>, Num_Lanes> lanes; // Array to hold lanes (4)
+
+    deque<Car> cars; // Deque holds cars
     for(int i = 0; i < In_sz; i++){
         cars.push_back(Car()); // Two cars pushed in
     }
     cout << "\nInitial queue:" << endl;
     for(int i = 0; i < cars.size(); i++){
+        cout << "Lane: " << i + 1 << endl;
         cars[i].print(); // Uses print function from Car class
     } cout << endl;
 
+    /*
     // Running cycles
     int cycle = 1; // Starts operation at one
     while(!cars.empty()){
@@ -54,5 +61,6 @@ int main(){
         }
         cycle++; // increases operation by one
     }
+    */
     return 0;
 }
