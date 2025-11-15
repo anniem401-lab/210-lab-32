@@ -15,7 +15,7 @@
 using namespace std;
 
 // Constants
-const int In_sz = 2, Num_Lanes = 4;
+const int Car_Count = 8, Num_Lanes = 4, Period_Max = 20;
 const int P_Car_Pays = 46, P_Car_Joins = 39, P_Rear_Change = 15; // Probabilities
 
 int main(){
@@ -24,21 +24,39 @@ int main(){
     array<deque<Car>, Num_Lanes> lanes; // Deque Array to hold 4 lanes
 
     deque<Car> cars; // Deque holds cars
-    for(int i = 0; i < Num_Lanes; i++){
-        cars.push_back(Car()); // Cars pushed in
+    for(int i = 0; i < Car_Count; i++){
+        cars.push_back(Car()); // Cars pushed into cars deque
     }
-    cout << "\nCars amount: " << cars.size(); // Checking amount of cars
+    
+    cout << "\nCars amount: " << cars.size() << endl; // Checking amount of cars
+    for(int i = 0; i < 8; i++){
+        cars[i].print(); // Prints cars from cars deque
+    }
 
     // Outputs 2 cars into 4 separate lanes
     cout << "\n\nInitial queue:" << endl;
     for(int i = 0; i < Num_Lanes; i++){
         cout << "Lane: " << i + 1 << endl;
-        cars[i].print(); // Uses print function from Car class
+        lanes[i].push_back(cars[i]);
+        
+
+        lanes[i].front().print();
+        
     } cout << endl;
+    cout << "\nCars amount: " << cars.size() << endl; // Checking amount of cars
 
+    // Running Time Periods
     int period = 1; // Starts time period at 1, will end at 20
-
     /*
+    while(!cars.empty() && period != 20){
+        cout << "Time: " << period << endl;
+    }
+    */
+
+    return 0;
+}
+
+/*
     // Running cycles
     int cycle = 1; // Starts operation at one
     while(!cars.empty()){
@@ -67,5 +85,3 @@ int main(){
         cycle++; // increases operation by one
     }
     */
-    return 0;
-}
