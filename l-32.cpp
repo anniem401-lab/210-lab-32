@@ -21,17 +21,22 @@ const int P_Car_Pays = 46, P_Car_Joins = 39, P_Rear_Change = 15; // Probabilitie
 int main(){
     srand(time(0)); // For random number generation
 
-    array<deque<Car>, Num_Lanes> lanes; // Array to hold lanes (4)
+    array<deque<Car>, Num_Lanes> lanes; // Deque Array to hold 4 lanes
 
     deque<Car> cars; // Deque holds cars
-    for(int i = 0; i < In_sz; i++){
-        cars.push_back(Car()); // Two cars pushed in
+    for(int i = 0; i < Num_Lanes; i++){
+        cars.push_back(Car()); // Cars pushed in
     }
-    cout << "\nInitial queue:" << endl;
-    for(int i = 0; i < cars.size(); i++){
+    cout << "\nCars amount: " << cars.size(); // Checking amount of cars
+
+    // Outputs 2 cars into 4 separate lanes
+    cout << "\n\nInitial queue:" << endl;
+    for(int i = 0; i < Num_Lanes; i++){
         cout << "Lane: " << i + 1 << endl;
         cars[i].print(); // Uses print function from Car class
     } cout << endl;
+
+    int period = 1; // Starts time period at 1, will end at 20
 
     /*
     // Running cycles
