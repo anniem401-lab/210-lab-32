@@ -28,7 +28,6 @@ int main(){
     deque<Car> cars; // Deque holds cars
     for(int i = 0; i < Car_Count; i++){
         cars.push_back(Car()); // Cars pushed into cars deque
-        
     }
     
     cout << "Original Deque of Cars: " << endl;
@@ -54,10 +53,13 @@ int main(){
     } cout << endl;
 
     // Running Time Periods
-    int i, period = 1; // Starts time period at 1, will end at 20
+    int period = 1; // Starts time period at 1, will end at 20
+    int i = 1;
     
     while(!lanes[i].empty() && period != Period_Max){
+        cout << "=========================================\n";
         cout << "Time: " << period << endl;
+        cout << "-----------------------------------------" << endl;
         int prob = rand() % 100 + 1;
         if (prob <= P_Car_Pays){// 46% probability that the car at the head of the line pays its toll and leaves the queue
             for (int i = 0; i < Num_Lanes; i++){
@@ -73,6 +75,7 @@ int main(){
                 cout << "Lane: " << i + 1 << " Joined: "; lanes[i].back().print(); // Car in back is printed
             }
         }
+        
         cout << "-----------------------------------------" << endl;
         // Queue is printed out
         for(int i = 0; i < Num_Lanes; i++){
@@ -84,40 +87,16 @@ int main(){
         
         } cout << endl;
 
-        if (lanes[i].empty()){
-            cout << setw(14) << "Empty...\n" << endl;
+        for(int i = 0; i < 1; i++){
+            if (lanes[i].empty()){
+                cout << " Empty...\n" << endl;
+            }
+            else{
+                cout << " Lanes are still populated...\n" << endl;
+            }
         }
         period++; // increases operation by one
     }
+    cout << "End of simulation!" << endl;
     return 0;
 }
-
-/*
-    // Running cycles
-    int cycle = 1; // Starts operation at one
-    while(!cars.empty()){
-        cout << "Time: " << cycle << " Operation: ";
-            
-        int prob = rand() % 100 + 1;
-        if (prob <= 55) {// 55% probability that the car at the head of the line pays its toll and leaves the toll booth 
-            cout << "Car paid: "; cars.front().print(); // Car at head is printed
-            cars.pop_front(); // Removes car at head in the deque
-            }
-            
-        else{// 45% probability that another car joins the line for the toll booth
-            cars.push_back(Car()); // Adds a car to back of the deque
-            cout << "Joined lane: "; cars.back().print(); // Car in back is printed
-        }
-
-        cout << "Queue: " << endl; // Queue is printed out
-        for(int j = 0; j < cars.size(); j++){
-             cout << setw(6); cars[j].print();
-        }
-        cout << "\n";
-
-        if (cars.empty()){
-            cout << setw(14) << "Empty...\n" << endl;
-        }
-        cycle++; // increases operation by one
-    }
-    */
