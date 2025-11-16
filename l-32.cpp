@@ -3,6 +3,7 @@
 
 // Milestones:
 // [Milestone 1] Branched from Lab 32.
+// [Milestone 2] Code has created the array of deques, and tests operations on this complex data structure to validate it.
 
 // Headers
 #include "Car.h" // To use Car.h file
@@ -16,7 +17,7 @@ using namespace std;
 
 // Constants
 const int Indent = 6; // for Setw()
-const int Initial_Cars = 2, Car_Count = 8, Num_Lanes = 4, Period_Max = 20;
+const int Initial_Cars = 2, Car_Count = 8, Num_Lanes = 4, Period_Max = 21;
 const int P_Car_Pays = 46, P_Car_Joins = 39, P_Rear_Change = 15; // Probabilities
 
 int main(){
@@ -27,12 +28,13 @@ int main(){
     deque<Car> cars; // Deque holds cars
     for(int i = 0; i < Car_Count; i++){
         cars.push_back(Car()); // Cars pushed into cars deque
+        
     }
     
-    //cout << "\nCars amount: " << cars.size() << endl; // Checking amount of cars
+    cout << "Original Deque of Cars: " << endl;
     for(int i = 0; i < 8; i++){
         cars[i].print(); // Prints cars from cars deque
-    }
+    } cout << "-----------------------------------------" << endl;
     
     // Pushes cars unto each lane
     for(int i = 0; i < Num_Lanes; i++){
@@ -41,7 +43,7 @@ int main(){
     }
 
     // Outputs 2 cars into 4 separate lanes
-    cout << "\n\nInitial queue:" << endl;
+    cout << "\nInitial queue:" << endl;
     for(int i = 0; i < Num_Lanes; i++){
         cout << "Lane: " << i + 1 << endl;
     
@@ -50,12 +52,11 @@ int main(){
         }
         
     } cout << endl;
-    //cout << "\nCars amount: " << cars.size() << endl; // Checking amount of cars
 
     // Running Time Periods
     int i, period = 1; // Starts time period at 1, will end at 20
     
-    while(!lanes[i].empty()){
+    while(!lanes[i].empty() && period != Period_Max){
         cout << "Time: " << period << endl;
         int prob = rand() % 100 + 1;
         if (prob <= P_Car_Pays){// 46% probability that the car at the head of the line pays its toll and leaves the queue
@@ -72,8 +73,8 @@ int main(){
                 cout << "Lane: " << i + 1 << " Joined: "; lanes[i].back().print(); // Car in back is printed
             }
         }
-
-        cout << endl; // Queue is printed out
+        cout << "-----------------------------------------" << endl;
+        // Queue is printed out
         for(int i = 0; i < Num_Lanes; i++){
         cout << "Lane: " << i + 1 << " Queue:" << endl;
     
@@ -88,12 +89,6 @@ int main(){
         }
         period++; // increases operation by one
     }
-
-    /*
-    while(!cars.empty() && period != 20){
-        cout << "Time: " << period << endl;
-    }
-    */
     return 0;
 }
 
