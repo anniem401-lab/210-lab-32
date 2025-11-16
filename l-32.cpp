@@ -4,6 +4,7 @@
 // Milestones:
 // [Milestone 1] Branched from Lab 32.
 // [Milestone 2] Code has created the array of deques, and tests operations on this complex data structure to validate it.
+// [Milestone 3] Code populates the plaza with 2 cars before the simulation runs. Output the current deque status per the sample output.
 
 // Headers
 #include "Car.h" // To use Car.h file
@@ -52,6 +53,7 @@ int main(){
         
     } cout << endl;
 
+    /*
     // Running Time Periods
     int period = 1; // Starts time period at 1, will end at 20
     int i = 1;
@@ -96,7 +98,9 @@ int main(){
             }
         }
         period++; // increases operation by one
+        
     }
     cout << "End of simulation!" << endl;
+    */
     return 0;
 }
