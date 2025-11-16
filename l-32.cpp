@@ -53,12 +53,32 @@ int main(){
 
     // Running Time Periods
     int period = 1; // Starts time period at 1, will end at 20
+    cout << "Time: " << period << endl;
+    int prob = rand() % 100 + 1;
+        if (prob <= P_Car_Pays) {// 46% probability that the car at the head of the line pays its toll and leaves the queue
+            cout << "Car paid: "; cars.front().print(); // Car at head is printed 
+            cars.pop_front(); // Removes car at head in the deque
+        }
+
+        if (prob <= P_Car_Joins) {// 39% probability that another car joins the queue
+            cars.push_back(Car()); // Adds a car to back of the deque
+            cout << "Joined lane: "; cars.back().print(); // Car in back is printed
+        }
+
+        cout << endl; // Queue is printed out
+        for(int i = 0; i < Num_Lanes; i++){
+        cout << "Lane: " << i + 1 << " Queue:" << endl;
+    
+        for(int j = 0; j < Initial_Cars; j++){
+            lanes[i][j].print(); // Prints cars from lanes deque
+        }
+        
+    } cout << endl;
     /*
     while(!cars.empty() && period != 20){
         cout << "Time: " << period << endl;
     }
     */
-
     return 0;
 }
 
