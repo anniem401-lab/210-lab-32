@@ -15,7 +15,7 @@
 using namespace std;
 
 // Constants
-const int Car_Count = 8, Num_Lanes = 4, Period_Max = 20;
+const int Initial_Cars = 2, Car_Count = 8, Num_Lanes = 4, Period_Max = 20;
 const int P_Car_Pays = 46, P_Car_Joins = 39, P_Rear_Change = 15; // Probabilities
 
 int main(){
@@ -32,15 +32,21 @@ int main(){
     for(int i = 0; i < 8; i++){
         cars[i].print(); // Prints cars from cars deque
     }
+    
+    // Distribute 2 cars into each lane
+    for(int i = 0; i < Num_Lanes; i++){
+        lanes[i].push_back(cars[i]);
+        lanes[i].push_back(cars[i + 4]);
+    }
 
     // Outputs 2 cars into 4 separate lanes
     cout << "\n\nInitial queue:" << endl;
     for(int i = 0; i < Num_Lanes; i++){
         cout << "Lane: " << i + 1 << endl;
-        lanes[i].push_back(cars[i]);
-        
-
-        lanes[i].front().print();
+    
+        for(int j = 0; j < Initial_Cars; j++){
+            lanes[i][j].print(); // Prints cars from lanes deque
+        }
         
     } cout << endl;
     cout << "\nCars amount: " << cars.size() << endl; // Checking amount of cars
