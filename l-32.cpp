@@ -5,6 +5,7 @@
 // [Milestone 1] Branched from Lab 32.
 // [Milestone 2] Code has created the array of deques, and tests operations on this complex data structure to validate it.
 // [Milestone 3] Code populates the plaza with 2 cars before the simulation runs. Output the current deque status per the sample output.
+// [Milestone 4] Code features the loop. Inside the loop, only two probabilities: 50/50 of the car paying/leaving and of the car joining the deque. Code should fully exercise the data structures.
 
 // Headers
 #include "Car.h" // To use Car.h file
@@ -53,17 +54,17 @@ int main(){
         
     } cout << endl;
 
-    /*
     // Running Time Periods
     int period = 1; // Starts time period at 1, will end at 20
     int i = 1;
+    cout << "** Start of Time Periods **" << endl;
     
     while(!lanes[i].empty() && period != Period_Max){
         cout << "=========================================\n";
         cout << "Time: " << period << endl;
         cout << "-----------------------------------------" << endl;
         int prob = rand() % 100 + 1;
-        if (prob <= P_Car_Pays){// 46% probability that the car at the head of the line pays its toll and leaves the queue
+        if (prob <= 50){// 50% probability that the car at the head of the line pays its toll and leaves the queue
             for (int i = 0; i < Num_Lanes; i++){
                 cout << "Lane: " << i + 1 << " Paid: "; lanes[i].front().print(); // Car at head is printed 
                 lanes[i].pop_front(); // Removes car at head in the deque
@@ -71,13 +72,12 @@ int main(){
         }
 
         prob = rand() % 100 + 1;
-        if (prob <= P_Car_Joins){// 39% probability that another car joins the queue
+        if (prob <= 50){// 50% probability that another car joins the queue
             for (int i = 0; i < Num_Lanes; i++){
                 lanes[i].push_back(Car()); // Adds a car to back of the deque
                 cout << "Lane: " << i + 1 << " Joined: "; lanes[i].back().print(); // Car in back is printed
             }
         }
-        
         cout << "-----------------------------------------" << endl;
         // Queue is printed out
         for(int i = 0; i < Num_Lanes; i++){
@@ -100,7 +100,6 @@ int main(){
         period++; // increases operation by one
         
     }
-    cout << "End of simulation!" << endl;
-    */
+    cout << "** End of simulation! **" << endl;
     return 0;
 }
