@@ -66,7 +66,7 @@ int main(){
         int prob = rand() % 100 + 1;
         if (prob <= P_Car_Pays){// 46% probability that the car at the head of the line pays its toll and leaves the queue
             for (int i = 0; i < Num_Lanes; i++){
-                cout << "Lane: " << i << " Paid: "; lanes[i].front().print(); // Car at head is printed 
+                cout << "Lane: " << i + 1 << " Paid: "; lanes[i].front().print(); // Car at head is printed 
                 lanes[i].pop_front(); // Removes car at head in the deque
             }
         }
@@ -75,7 +75,7 @@ int main(){
         if (prob <= P_Car_Joins){// 39% probability that another car joins the queue
             for (int i = 0; i < Num_Lanes; i++){
                 lanes[i].push_back(Car()); // Adds a car to back of the deque
-                cout << "Lane: " << i << " Joined: "; lanes[i].back().print(); // Car in back is printed
+                cout << "Lane: " << i + 1 << " Joined: "; lanes[i].back().print(); // Car in back is printed
             }
         }
 
@@ -83,8 +83,9 @@ int main(){
         if (prob <= P_Rear_Change){// 15 % probability rear car changes lanes
             for (int i = 0; i < Num_Lanes; i++){
                 // Code to move rear end car to different lane
-                cout << "Lane: " << i << " Switched: ";
-                lanes[i].back(); // Reveals the back element
+                cout << "Lane: " << i + 1 << " Switched: ";
+                lanes[i].back().print(); // Reveals the back element
+                //lanes[i].push_back(lanes[i].back());
             } cout << endl;
         }
 
