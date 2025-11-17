@@ -84,10 +84,13 @@ int main(){
             for (int i = 0; i < Num_Lanes; i++){
                 // Code to move rear end car to different lane
                 cout << "Lane: " << i + 1 << " Switched: ";
+                //Car temp = lanes[i].back();
                 lanes[i].back().print(); // Reveals the rear car
                 lanes[i].pop_back(); // Removes car from rear
-
-                // lanes[i].push_back();
+                /*
+                int newLane = (rand() % Num_Lanes); // Picks random lane
+                lanes[newLane].push_back(temp);
+                */
             } cout << endl;
         }
 
@@ -99,17 +102,16 @@ int main(){
         for(int j = 0; j < lanes[i].size(); j++){
             cout << setw(Indent); lanes[i][j].print(); // Prints cars from lanes deque
         }
-        
-        } cout << endl;
 
         for(int i = 0; i < 1; i++){
             if (lanes[i].empty()){
-                cout << " Empty...\n" << endl;
-            }
-            else{
-                cout << " Lanes are still populated...\n" << endl;
+                cout << setw(15) << " [Empty...]" << endl;
             }
         }
+        
+        } cout << endl;
+
+        
         period++; // increases operation by one
         
     }
