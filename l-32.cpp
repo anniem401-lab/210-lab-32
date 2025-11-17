@@ -19,7 +19,7 @@ using namespace std;
 
 // Constants
 const int Indent = 6; // for Setw()
-const int Initial_Cars = 2, Car_Count = 8, Num_Lanes = 4, Period_Max = 21;
+const int Initial_Cars = 2, Car_Count = 8, Num_Lanes = 4, Period_Max = 9;
 const int P_Car_Pays = 46, P_Car_Joins = 39, P_Rear_Change = 15; // Probabilities
 
 int main(){
@@ -64,20 +64,30 @@ int main(){
         cout << "Time: " << period << endl;
         cout << "-----------------------------------------" << endl;
         int prob = rand() % 100 + 1;
-        if (prob <= 50){// 50% probability that the car at the head of the line pays its toll and leaves the queue
+        if (prob <= P_Car_Pays){// 46% probability that the car at the head of the line pays its toll and leaves the queue
             for (int i = 0; i < Num_Lanes; i++){
-                cout << "Lane: " << i + 1 << " Paid: "; lanes[i].front().print(); // Car at head is printed 
+                cout << "Lane: " << i << " Paid: "; lanes[i].front().print(); // Car at head is printed 
                 lanes[i].pop_front(); // Removes car at head in the deque
             }
         }
 
         prob = rand() % 100 + 1;
-        if (prob <= 50){// 50% probability that another car joins the queue
+        if (prob <= P_Car_Joins){// 39% probability that another car joins the queue
             for (int i = 0; i < Num_Lanes; i++){
                 lanes[i].push_back(Car()); // Adds a car to back of the deque
-                cout << "Lane: " << i + 1 << " Joined: "; lanes[i].back().print(); // Car in back is printed
+                cout << "Lane: " << i << " Joined: "; lanes[i].back().print(); // Car in back is printed
             }
         }
+
+        prob = rand() % 100 + 1;
+        if (prob <= P_Rear_Change){// 15 % probability rear car changes lanes
+            for (int i = 0; i < Num_Lanes; i++){
+                // Code to move rear end car to different lane
+                cout << "Lane: " << i << " Switched: ";
+                lanes[i].back(); // Reveals the back element
+            } cout << endl;
+        }
+
         cout << "-----------------------------------------" << endl;
         // Queue is printed out
         for(int i = 0; i < Num_Lanes; i++){
