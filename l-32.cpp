@@ -19,7 +19,7 @@ using namespace std;
 
 // Constants
 const int Indent = 6; // for Setw()
-const int Initial_Cars = 2, Car_Count = 8, Num_Lanes = 4, Period_Max = 9;
+const int Initial_Cars = 2, Car_Count = 8, Num_Lanes = 4, Period_Max = 21;
 const int P_Car_Pays = 46, P_Car_Joins = 39, P_Rear_Change = 15; // Probabilities
 
 int main(){
@@ -56,10 +56,10 @@ int main(){
 
     // Running Time Periods
     int period = 1; // Starts time period at 1, will end at 20
-    int i = 1;
     cout << "** Start of Time Periods **" << endl;
     
-    while(!lanes[i].empty() && period != Period_Max){
+    // Continue while we haven't reached the max period and at least one lane still has cars
+    while(period != Period_Max && (!lanes[0].empty() || !lanes[1].empty() || !lanes[2].empty() || !lanes[3].empty())){
         cout << "=========================================\n";
         cout << "Time: " << period << endl;
         cout << "-----------------------------------------" << endl;
@@ -84,8 +84,10 @@ int main(){
             for (int i = 0; i < Num_Lanes; i++){
                 // Code to move rear end car to different lane
                 cout << "Lane: " << i + 1 << " Switched: ";
-                lanes[i].back().print(); // Reveals the back element
-                //lanes[i].push_back(lanes[i].back());
+                lanes[i].back().print(); // Reveals the rear car
+                lanes[i].pop_back(); // Removes car from rear
+
+                // lanes[i].push_back();
             } cout << endl;
         }
 
